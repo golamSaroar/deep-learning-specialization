@@ -25,40 +25,39 @@ When making the prediction for y<sup>3</sup>, it gets the information not only f
 
 #### Different Types of RNNs
 
-[3]
+![examples-of-rnn-architectures](slides/examples-of-rnn-architectures.png)
 
-[4]
+![examples-of-rnn-architectures](slides/examples-of-rnn-architectures2.png)
 
-[5]
+![summary-of-RNN-types](slides/summary-of-RNN-types.png)
 
 #### Language Model
 
-[6]
+![language-modeling](slides/language-modeling.jpg)
 
 What a language model does is given any sentence, its job is to tell you what is the probability of a sentence.
 
-[7]
+![language-modeling-with-rnn](slides/language-modeling-with-rnn.png)
 
-[8]
+![RNN Model](slides/rnn-model.png)
 
-[9]
+![character-level-language-modeling](slides/character-level-language-modeling.png)
 
-Using a character level language model has some pros and cons. One is that you don't ever have to worry about unknown word tokens. In particular, a character level language model is able to assign a sequence like mau, a non-zero probability. Whereas if mau was not in your vocabulary for the word level language model, you just have to assign it the unknown word token. But the main disadvantage of the character level language model is that you end up with much longer sequences. So many english sentences will have 10 to 20 words but may have many, many dozens of characters. And so character language models are not as good as word level language models at capturing long range dependencies between how the the earlier parts of the sentence also affect the later part of the sentence. And character level models are also just more computationally expensive to train.
+Using a character level language model has some pros and cons. One is that you don't ever have to worry about unknown word tokens `<UNK>`. In particular, a character level language model is able to assign a sequence like "mau", a non-zero probability. Whereas if "mau" was not in your vocabulary for the word level language model, you just have to assign it the `<UNK>`. But the main disadvantage of the character level language model is that you end up with much longer sequences. So many english sentences will have 10 to 20 words but may have many, many dozens of characters. And so character language models are not as good as word level language models at capturing long range dependencies between how the the earlier parts of the sentence also affect the later part of the sentence. And character level models are also just more computationally expensive to train.
 
-[10]
+![GRU-simplified](slides/GRU-simplified.png)
 
-GRU is one of the ideas in RNN that has enabled them to become much better at capturing very long range dependencies has made RNN much more effective.
+GRU is one of the ideas in RNN that has enabled them to become much better at capturing very long range dependencies and has made RNN much more effective.
 
-[11]
+![LSTM](slides/lstm.png)
 
-the advantage of the GRU is that it's a simpler model and so it is actually easier to build a much bigger network, it only has two gates, so computationally, it runs a bit faster. So, it scales the building somewhat bigger models but the LSTM is more powerful and more effective since it has three gates instead of two. If you want to pick one to use, I think LSTM has been the historically more proven choice.
+"The advantage of the GRU is that it's a simpler model and so it is actually easier to build a much bigger network, it only has two gates, so computationally, it runs a bit faster. So, it scales to building somewhat bigger models but the LSTM is more powerful and more effective since it has three gates instead of two. If you want to pick one to use, I think LSTM has been the historically more proven choice."
 
-[12]
+![bidirectional-rnn](slides/bidirectional-rnn.png)
 
-for a lots of NLP problems, for a lot of text with natural language processing problems, a bidirectional RNN with a LSTM appears to be commonly used. So, we have NLP problem and you have the complete sentence, you try to label things in the sentence, a bidirectional RNN with LSTM blocks both forward and backward would be a pretty views of first thing to try. So, that's it for the bidirectional RNN and this is a modification they can make to the basic RNN architecture or the GRU or the LSTM, and by making this change you can have a model that uses RNN and or GRU or LSTM and is able to make predictions anywhere even in the middle of a sequence by taking into account information potentially from the entire sequence. The disadvantage of the bidirectional RNN is that you do need the entire sequence of data before you can make predictions anywhere. So, for example, if you're building a speech recognition system, then the BRNN will let you take into account the entire speech utterance but if you use this straightforward implementation, you need to wait for the person to stop talking to get the entire utterance before you can actually process it and make a speech recognition prediction. So for a real type speech recognition applications, they're somewhat more complex modules as well rather than just using the standard bidirectional RNN as you've seen here. But for a lot of natural language processing applications where you can get the entire sentence all the same time, the standard BRNN algorithm is actually very effective. So, that's it for BRNNs and next and final video for this week, let's talk about how to take all of these ideas RNNs, LSTMs and GRUs and the bidirectional versions and construct deep versions of them.
+The disadvantage of the bidirectional RNN is that you need the entire sequence of data before you can make predictions anywhere. So, for example, if you're building a speech recognition system, then the BRNN will let you take into account the entire speech utterance but if you use this straightforward implementation, you need to wait for the person to stop talking to get the entire utterance before you can actually process it and make a speech recognition prediction. So for a real type speech recognition applications, they're somewhat more complex modules as well rather than just using the standard bidirectional RNN as you've seen here. But for a lot of natural language processing applications where you can get the entire sentence all the same time, the standard BRNN algorithm is actually very effective.
 
-[13]
-
+![Deep RNN](slides/deep-rnn.png)
 
 
 ### Word Embeddings
@@ -101,39 +100,40 @@ But for finding out word embeddings, any of the other contexts can be used as we
 
 ![20-rnn-for-sentiment-classification](slides/20-rnn-for-sentiment-classification.png)
 
-[1]
+![21-bias-in-word-embeddings](slides/21-bias-in-word-embeddings.png)
 
-[2]
+![22-addressing-bias-in-word-embeddings](slides/22-addressing-bias-in-word-embeddings.png)
 
 ### Sequence Models and Attention Mechanism
 
-[23]
+![23-sequence-model](slides/23-sequence-model.png)
 
-this model works, given enough pairs of French and English sentences. If you train the model to input a French sentence and output the corresponding English translation, this will actually work decently well. And this model simply uses an encoder network, whose job it is to find an encoding of the input French sentence and then use a decoder network to then generate the corresponding English translation.
+This model works, given enough pairs of French and English sentences. If you train the model to input a French sentence and output the corresponding English translation, this will actually work decently well. And this model simply uses an encoder network, whose job it is to find an encoding of the input French sentence and then use a decoder network to then generate the corresponding English translation.
 
-[24]
+![24-image-captioning](slides/24-image-captioning.png)
 
-So how do you train a new network to input an image and output a caption like that phrase up there? Here's what you can do. From the earlier course on [inaudible] you've seen how you can input an image into a convolutional network, maybe a pre-trained AlexNet, and have that learn an encoding or learn a set of features of the input image. So, this is actually the AlexNet architecture and if we get rid of this final Softmax unit, the pre-trained AlexNet can give you a 4096-dimensional feature vector of which to represent this picture of a cat. And so this pre-trained network can be the encoder network for the image and you now have a 4096-dimensional vector that represents the image. You can then take this and feed it to an RNN, whose job it is to generate the caption one word at a time. 
+How do you train a new network to input an image and output a caption? Here's what you can do. Take this AlexNet architecture and if we get rid of this final Softmax unit, the pre-trained AlexNet can give you a 4096-dimensional feature vector of which to represent this picture of a cat. And so this pre-trained network can be the encoder network for the image and you now have a 4096-dimensional vector that represents the image. You can then take this and feed it to an RNN, whose job it is to generate the caption one word at a time. 
 
-[25]
+![25-machine-translation](slides/25-machine-translation.png)
 
-So, to summarize, in this video, you saw how machine translation can be posed as a conditional language modeling problem. But one major difference between this and the earlier language modeling problems is rather than wanting to generate a sentence at random, you may want to try to find the most likely English sentence, most likely English translation. But the set of all English sentences of a certain length is too large to exhaustively enumerate. So, we have to resort to a search algorithm.
+Machine translation can be posed as a conditional language modeling problem. But one major difference between this and the earlier language modeling problems is that, rather than wanting to generate a sentence at random, you may want to try to find the most likely English sentence, most likely English translation.  
+But the set of all English sentences of a certain length is too large to exhaustively enumerate. So, we have to resort to a search algorithm.
 
-[26]
+![26-greedy-search](slides/26-greedy-search.png)
 
-[27]
+![27-beam-search](slides/27-beam-search.png)
 
-[28]
+![28-beam-search](slides/28-beam-search.png)
 
-[29]
+![29-beam-search](slides/29-beam-search.png)
 
-[30]
+![30-length-normalization](slides/30-length-normalization.png)
 
-avoid numerical underflow, reduces the penalty for outputting longer translations.
+- avoids numerical underflow,  
+- reduces the penalty for outputting longer translations.
 
-[31]
+![31-beam-search](slides/31-beam-search.png)
 
-[32]
+![32-beam-search-error-analysis](slides/32-beam-search-error-analysis.png)
 
-[33]
-
+![33-beam-search-error-analysis](slides/33-beam-search-error-analysis.png)
