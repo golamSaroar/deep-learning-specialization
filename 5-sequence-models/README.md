@@ -33,7 +33,7 @@ When making the prediction for y<sup>3</sup>, it gets the information not only f
 
 #### Language Model
 
-![language-modeling](slides/language-modeling.jpg)
+![language-modeling](slides/language-modeling.png)
 
 What a language model does is given any sentence, its job is to tell you what is the probability of a sentence.
 
